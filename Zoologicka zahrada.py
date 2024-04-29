@@ -44,6 +44,8 @@ Terka = Zamestnanec('Tereza Vysoka', 700_000, 'Cvicitelka tygru')
 Anet = Zamestnanec('Anet Krasna', 600_000, 'Cvicitelka vyder')
 Martin = Zamestnanec('Martin Velky', 650_000, 'Cvicitel lednich medvedu')
 
+print(Anet)
+
 zamestnancy_dict = [Terka, Anet, Martin]
 for zamestnanec in zamestnancy_dict:
     print(zamestnanec.export_to_dict())
@@ -62,7 +64,6 @@ zvire = Zvire('Adolf', 'Tarantule Velká', 0.1)
 reditel = Reditel(cele_jmeno='Karel', rocni_plat=800_000, oblibene_zvire=zvire)
 assert reditel.pozice == 'Reditel'
 assert isinstance(reditel.oblibene_zvire, Zvire)
-print(reditel)
 
 
 #Zoo
@@ -75,10 +76,23 @@ class Zoo:
         self.zvirata = zvirata
 
     def vaha_vsech_zvirat_v_zoo(self):
-        return getattr(ruzenka, self.zvirata)
+        total_weight = 0
+        for one in zviratka_dict:
+            if hasattr(one, 'vaha'):
+                total_weight += one.vaha
+        return f'{total_weight} Kg.'
 
-zoo = Zoo('ZOO Praha', 'U Trojského zámku 3/120', reditel, zamestnanci, zvirata)
+    def mesicni_naklady_na_zamestnance(self):
+        monthly = 0
+        for one in zamestnancy_dict:
+            if hasattr(one, 'rocni_plat'):
+                monthly += one.rocni_plat
+        monthly01 = monthly + reditel.rocni_plat
+        monthly02 = monthly01 / 12
+        return f'mesicni naklady cini {round(monthly02, 2)} Kc'
+
+zoo = Zoo('ZOO Praha', 'U Trojského zámku 3/120', reditel, Zamestnanec, Zvire)
 
 print(zoo.reditel)
-print('Celková váha zvířat v ZOO:', zoo.vaha_vsech_zvirat_v_zoo())
+print('Celková váha zvířat v ZOO: ', zoo.vaha_vsech_zvirat_v_zoo())
 print('Měsíční náklady na zaměstnance:', zoo.mesicni_naklady_na_zamestnance())
