@@ -31,7 +31,7 @@ class Zamestnanec:
     pozice: str
 
     def __str__(self):
-        return f"{self.cele_jmeno} vydelava za rok {self.rocni_plat} a je na pozici {self.pozice}"
+        return f"{self.cele_jmeno} vydelava za rok {self.rocni_plat}, a je na pozicí {self.pozice}"
     
     def ziskej_inicialy(self):
        inicialy = self.cele_jmeno.split()
@@ -40,9 +40,9 @@ class Zamestnanec:
     def export_to_dict(self):
         return {'jmeno': self.cele_jmeno, 'rocni_plat': self.rocni_plat, 'pozice': self.pozice}
 
-Terka = Zamestnanec('Tereza Vysoka', 700_000, 'Cvicitelka tygru')
-Anet = Zamestnanec('Anet Krasna', 600_000, 'Cvicitelka vyder')
-Martin = Zamestnanec('Martin Velky', 650_000, 'Cvicitel lednich medvedu')
+Terka = Zamestnanec('Tereza Vysoka', 700_000, 'Cvičitelka tygru')
+Anet = Zamestnanec('Anet Krasna', 600_000, 'Cvičitelka vyder')
+Martin = Zamestnanec('Martin Velky', 650_000, 'Cvičitel ledních medvedů')
 
 print(Anet)
 
@@ -89,7 +89,7 @@ class Zoo:
                 monthly += one.rocni_plat
         monthly01 = monthly + reditel.rocni_plat
         monthly02 = monthly01 / 12
-        return f'mesicni naklady cini {round(monthly02, 2)} Kc'
+        return f'činí {round(monthly02, 2)} Kc'
 
 zoo = Zoo('ZOO Praha', 'U Trojského zámku 3/120', reditel, Zamestnanec, Zvire)
 
