@@ -54,30 +54,31 @@ class Reditel(Zamestnanec):
     def __init__(self, cele_jmeno, rocni_plat, pozice='Reditel', oblibene_zvire=Zvire):
         super().__init__(cele_jmeno, rocni_plat, pozice)
         self.oblibene_zvire = oblibene_zvire
+    
+    def __str__(self):
+        return super().__str__() + f" - je to boss."
 
 zvire = Zvire('Adolf', 'Tarantule Velká', 0.1)
 reditel = Reditel(cele_jmeno='Karel', rocni_plat=800_000, oblibene_zvire=zvire)
 assert reditel.pozice == 'Reditel'
 assert isinstance(reditel.oblibene_zvire, Zvire)
+print(reditel)
 
 
 #Zoo
-@dataclass
 class Zoo:
-    jmeno: str
-    adresa: str
-    reditel: Reditel
-    zamestnanci: Zamestnanec
-    zvirata: Zvire
+    def __init__(self, jmeno, adresa, reditel=Reditel, zamestnanci=[Zamestnanec], zvirata=[Zvire]):
+        self.jmeno = jmeno
+        self.adresa = adresa
+        self.reditel = reditel
+        self.zamestnanci = zamestnanci
+        self.zvirata = zvirata
 
     def vaha_vsech_zvirat_v_zoo(self):
-        total_weight = 0
-        for vaha in zviratka_dict:
-            total_weight += self.vaha
+        return getattr(ruzenka, self.zvirata)
 
-zoo = Zoo('ZOO Praha', 'U Trojského zámku 3/120', reditel, Terka, ruzenka)
+zoo = Zoo('ZOO Praha', 'U Trojského zámku 3/120', reditel, zamestnanci, zvirata)
 
 print(zoo.reditel)
 print('Celková váha zvířat v ZOO:', zoo.vaha_vsech_zvirat_v_zoo())
 print('Měsíční náklady na zaměstnance:', zoo.mesicni_naklady_na_zamestnance())
-    
