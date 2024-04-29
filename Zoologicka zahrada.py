@@ -8,7 +8,7 @@ class Zvire:
     vaha: int
 
     def __str__(self):
-        return f"Zvire {self.name} je {self.druh} a vazi {self.vaha} Kg. Vitej v nasi zahrade!"
+        return f"Zvire {self.name} je {self.druh} a váži {self.vaha} Kg. Vitej v naší zahradě!"
 
     def export_to_dict(self):
         return {'jmeno': self.jmeno, 'druh': self.druh, 'vaha': self.vaha}
